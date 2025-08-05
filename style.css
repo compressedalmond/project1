@@ -20,7 +20,7 @@ body{
     padding: 2rem;
     width: 100%;
     max-width: 800px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 
 }
 
@@ -65,7 +65,7 @@ h1::after{
 .palette-container{
     display: grid;
     gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(130, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
 }
 .color-box{
     border-radius: 10px;
@@ -85,7 +85,7 @@ h1::after{
     padding: 0.7rem;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     font-size: 0.9rem;
 }
 .hex-value{
