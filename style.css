@@ -17,9 +17,9 @@ body{
 .container{
     background-color: white;
     border-radius: 1rem;
-    padding: 2rem;
+    padding: 3rem;
     width: 100%;
-    max-width: 800px;
+    max-width: 1000px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 
 }
@@ -65,7 +65,7 @@ h1::after{
 .palette-container{
     display: grid;
     gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    grid-template-columns:1fr 1fr 1fr 1fr 1fr;
 }
 .color-box{
     border-radius: 10px;
@@ -77,12 +77,14 @@ h1::after{
     transform: translateY(-5px);
 }
 .color{
-    height: 120px;
+    height: 170px;
     cursor: pointer;
 }
 .color-info{
     background-color: #fff;
     padding: 0.7rem;
+    padding-top: 1rem;
+    margin-bottom: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -90,18 +92,37 @@ h1::after{
 }
 .hex-value{
     font-weight: 500;
+    font-size: medium;
     letter-spacing: 0.5px;
 }
 .copy-btn{
     cursor: pointer;
+    scale: 110%;
+    margin-left: 0.5rem;
     color: #64748b;
     transition: color 0.2s;
 }
 .copy-btn:hover{
     color: #667eea;
 }
-@media(max-width:768px){
+
+.color-box .locked .color{
+    outline:3px solid #333;
+    overflow:visible;
+}
+.lock-btn{
+    cursor: pointer;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+@media(max-width:908px){
     .palette-container{
-        grid-template-columns: repeat(auto-fit,minmax(100px, 1fr));
+        grid-template-columns: 1fr 1fr;
+    }
+    .color-info{
+        margin-left: 1rem;
+    }
+    .copy-btn{
+        margin-left: 0;
     }
 }

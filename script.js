@@ -12,7 +12,7 @@ paletteContainer.addEventListener("click",function(e) {
         .writeText(hexValue)
         .then(()=>showCopySucess(e.target))
         .catch((err)=>console.log(err));
-    } else if(e.target,classList.contains("color")) {
+    } else if (e.target.classList.contains("color")) {
         const hexValue = e.target.nextElementSibling.querySelector(".hex-value").textContent;
         navigator.clipboard
         .writeText(hexValue)
@@ -20,13 +20,25 @@ paletteContainer.addEventListener("click",function(e) {
         .catch((err)=>console.log(err));
 
     }
-});
+    else if (e.target.classList.contains("lock-btn")) { 
+        const lockIcon = e.target;
+        const colorBox = lockIcon.closest(".color-box");
+        colorBox.classList.toggle("locked");
+
+        if (colorBox.classList.contains("locked")) {
+            lockIcon.classList.remove("fa-lock-open");
+            lockIcon.classList.add("fa-lock");
+        } else {
+            lockIcon.classList.remove("fa-lock");
+            lockIcon.classList.add("fa-lock-open");
+        }
+}});
 
 function showCopySucess(element){
     element.classList.remove("far","fa-copy");
     element.classList.add("fas","fa-check");
 
-    copyBtn.style.color= "#48bb78";
+    element.style.color= "#48bb78";
 
     setTimeout(()=>{
         element.classList.remove("fas","fa-check");
@@ -36,11 +48,17 @@ function showCopySucess(element){
 }
 
 function generatePalette() {
+    const colorBoxes= document.querySelectorAll(".color-box");
     const colors=[];
 
-    for(let i =0; i<5;i++){
-        colors.push(generateRandomColor());
-    }
+    colorBoxes.forEach((box)=>{
+        if(box.classList.contains("locked")){
+            const hex = box.querySelector(".hex-value").textContent;
+            colors.push(hex);
+        } else{
+            colors.push(generateRandomColor());
+        }
+    });
 
     updatePaletteDisplay(colors);
 }
@@ -56,7 +74,10 @@ function generateRandomColor() {
 
 function updatePaletteDisplay(colors){
     const colorBoxes = document.querySelectorAll(".color-box");
+
     colorBoxes.forEach((box,index)=>{
+        if(box.classList.contains("locked")) return;
+
         const color=colors[index];
         const colorDiv=box.querySelector(".color");
         const hexValue=box.querySelector(".hex-value");
